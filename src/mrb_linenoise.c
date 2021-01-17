@@ -133,10 +133,9 @@ mrb_linenoise(mrb_state *mrb, mrb_value self)
 
   char *line = NULL;
   size_t capa = 0;
-  do {
-    errno = 0;
-    line = linenoise(prompt, mrb, &capa);
-  } while (!line && (errno == EAGAIN||errno == EWOULDBLOCK));
+
+  errno = 0;
+  line = linenoise(prompt, mrb, &capa);
 
   if (!line) {
     if (errno) {
